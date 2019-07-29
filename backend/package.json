@@ -1,0 +1,27 @@
+{
+  "name": "comments-back",
+  "version": "1.0.0",
+  "description": "Backend for comments",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "npm run init-db && node index.js",
+    "sequelize-skeleton": "sequelize init:models && sequelize init:config",
+    "init-db": "cd /opt/lampp/bin && echo 'DROP DATABASE IF EXISTS comments_database_development; CREATE DATABASE comments_database_development CHARACTER SET utf8 COLLATE utf8_general_ci' | ./mysql -u root && cd -"
+  },
+  "keywords": [
+    "challenge"
+  ],
+  "author": "cristianbgp",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.7.2",
+    "graphql": "^14.4.2",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.11.0"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "sequelize-cli": "^5.5.0"
+  }
+}
