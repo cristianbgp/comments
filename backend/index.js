@@ -1,4 +1,5 @@
-const { ApolloServer } = require("apollo-server");
+const express = require("express");
+const { ApolloServer } = require("apollo-server-express");
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 const db = require("./models");
@@ -9,16 +10,21 @@ const server = new ApolloServer({
   context: { db }
 });
 
-const hostname = proccess.env.HOSTNAME || "localhost";
+const hostname = "localhost";
 const portServer = process.env.PORT || 4000;
+
+const app = express();
+server.applyMiddleware({ app });
+
+app.use(express.static("app/public"));
 
 db.sequelize.sync().then(() => {
   db.author.create({
     username: "Cristian"
   });
-  server.listen({ port: 4000 }, () =>
+  app.listen({ port: portServer }, () =>
     console.log(
-      `🚀 Server ready at http://${localhost}:${porServer}${server.graphqlPath}`
+      `🚀 Server ready at http://${hostname}:${portServer}${server.graphqlPath}`
     )
   );
 });

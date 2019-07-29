@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "npm run init-db && node index.js",
+    "start:dev": "node index.js",
+    "start": "set NODE_ENV=production && node index.js",
     "sequelize-skeleton": "sequelize init:models && sequelize init:config",
     "init-db": "cd /opt/lampp/bin && echo 'DROP DATABASE IF EXISTS comments_database_development; CREATE DATABASE comments_database_development CHARACTER SET utf8 COLLATE utf8_general_ci' | ./mysql -u root && cd -"
   },
@@ -15,7 +16,8 @@
   "author": "cristianbgp",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.7.2",
+    "apollo-server-express": "^2.7.2",
+    "express": "^4.17.1",
     "graphql": "^14.4.2",
     "mysql2": "^1.6.5",
     "sequelize": "^5.11.0"
